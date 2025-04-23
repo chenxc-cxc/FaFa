@@ -5,12 +5,12 @@ export.cfg
 export_presets.cfg
 *.translation
 
-# Godot-specific ignores
-*.import
-*.tmp
-*.pck
-*.stex
-*.res
+# # Godot-specific ignores
+# *.import
+# *.tmp
+# *.pck
+# *.stex
+# *.res
 
 # System/tool-specific ignores
 .DS_Store
