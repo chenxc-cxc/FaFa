@@ -106,7 +106,7 @@ func _ready():
 					"key":
 						child.text = tts_config["api"].get("key", "")
 					"voiceid":
-						child.text = tts_config["api"].get("voiceid", "272878038100738056")
+						child.text = tts_config["api"].get("voiceid", "280798412406784140")
 					"modelid":
 						child.text = tts_config["api"].get("modelid", "tts-multilingual")
 					"languagecode":

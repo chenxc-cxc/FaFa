@@ -600,7 +600,7 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 18
 theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
-placeholder_text = "eg: 272878038100738056"
+placeholder_text = "eg: 280798412406784140"
 
 [node name="ModelIDLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
 custom_minimum_size = Vector2(100, 40)

@@ -8,7 +8,7 @@ var current_tts_set: Dictionary = {
 		"type": "AllVoiceLab",
 		"url": "https://api.allvoicelab.cn/v1/text-to-speech/create",
 		"key": "",
-		"voiceid": "272878038100738056",
+		"voiceid": "280798412406784140",
 		"modelid": "tts-multilingual"
 	},
 	"parameters": {
