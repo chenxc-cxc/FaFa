@@ -12,7 +12,6 @@ export_presets.cfg
 *.translation
 *.stex
 *.res
-*.tres
 
 # System/tool-specific ignores
 .DS_Store
