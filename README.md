@@ -42,7 +42,7 @@ Core System:
 
 - LLMAPI (scenes/llmapi.gd)：大语言模型服务
 - TTSAPI (scenes/ttsapi.gd)：语音合成服务
-- STTAPI (scenes/sttapi.gd)：语音识别服务 (暂未上线)
+- STTAPI (scenes/sttapi.gd)：语音识别服务 (暂未开通使用)
 
 #### 1.3 全局管理系统 (global/)
 
@@ -180,7 +180,7 @@ QuickChat System:
 快速对话特性：
 
 - 动态时间格式化：支持实时日期插值
-- 即时响应：一键触发常用对话
+- 即时响应：一键触发内置对话
 
 信号流程：
 
@@ -197,7 +197,7 @@ QuickChat Flow:
 - TTS 语音合成
 - 语音播放控制
 - 音频资源管理
-- STT 语音识别（未上线）
+- STT 语音识别（暂未开通使用）
 
 ### 3. 动画系统
 
