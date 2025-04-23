@@ -9,9 +9,10 @@ export_presets.cfg
 *.import
 *.tmp
 *.pck
-*.translation
 *.stex
 *.res
+
+.gitattributes
 
 # System/tool-specific ignores
 .DS_Store
