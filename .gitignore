@@ -12,8 +12,6 @@ export_presets.cfg
 *.stex
 *.res
 
-.gitattributes
-
 # System/tool-specific ignores
 .DS_Store
 Thumbs.db
