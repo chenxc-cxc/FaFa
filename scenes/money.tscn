@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbq5g2ek0c035"]
+
+[ext_resource type="Script" path="res://scenes/money.gd" id="1_yr3l8"]
+[ext_resource type="Gradient" uid="uid://bj0kij4yjmd5k" path="res://colors/color01.tres" id="2_juic0"]
+[ext_resource type="Texture2D" uid="uid://c5awovijsgc1c" path="res://assets/coin_spining.png" id="3_n8ekc"]
+[ext_resource type="AudioStream" uid="uid://ge2kuk333wao" path="res://assets/laicai.MP3" id="4_cikpp"]
+[ext_resource type="Texture2D" uid="uid://dtjwyaseffrya" path="res://assets/spotlight_1.png" id="5_ti1ai"]
+
+[sub_resource type="Curve" id="Curve_3e1tn"]
+_data = [Vector2(0.00164203, 0.114373), 0.0, 0.0, 0, 0, Vector2(0.164204, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.468984), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Coin" type="Node2D"]
+script = ExtResource("1_yr3l8")
+color = ExtResource("2_juic0")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 30
+lifetime = 3.0
+one_shot = true
+explosiveness = 0.8
+texture = ExtResource("3_n8ekc")
+direction = Vector2(0, 1)
+spread = 120.0
+gravity = Vector2(0, 200)
+initial_velocity_min = 30.0
+initial_velocity_max = 150.0
+damping_min = 20.0
+damping_max = 30.0
+angle_min = -180.0
+angle_max = 180.0
+scale_amount_min = 0.5
+scale_amount_max = 0.8
+scale_amount_curve = SubResource("Curve_3e1tn")
+color_ramp = ExtResource("2_juic0")
+anim_speed_min = 5.0
+anim_speed_max = 10.0
+anim_offset_max = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_cikpp")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(1, 0.9, 0, 1)
+energy = 4.0
+texture = ExtResource("5_ti1ai")
+texture_scale = 4.0

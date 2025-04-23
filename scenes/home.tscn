@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=4 uid="uid://c8f6xxb2xjlwh"]
+[gd_scene load_steps=18 format=4 uid="uid://c8f6xxb2xjlwh"]
 
 [ext_resource type="Texture2D" uid="uid://cl8jmh3gnnrqa" path="res://assets/tileset.png" id="1_reopy"]
 [ext_resource type="Texture2D" uid="uid://d02s24k1bw12f" path="res://assets/Trees.png" id="2_37cae"]
 [ext_resource type="Texture2D" uid="uid://ca4bwiyuldeql" path="res://assets/tree_2.webp" id="2_d2k41"]
 [ext_resource type="Texture2D" uid="uid://cgaiqqdihvjsp" path="res://assets/props.png" id="3_5oydq"]
-[ext_resource type="Texture2D" uid="uid://djs3vl0l6p20i" path="res://assets/straw-house.png" id="4_pt2rm"]
-[ext_resource type="Texture2D" uid="uid://d0qf8cklsv0e7" path="res://assets/player.png" id="6_k2dwn"]
+[ext_resource type="Texture2D" uid="uid://cck3qirglq8j1" path="res://assets/shining_tree_idle_walk.png" id="6_0x1ex"]
 [ext_resource type="AudioStream" uid="uid://dkvy4xu0k11mo" path="res://assets/rain.ogg" id="7_solto"]
 
 [sub_resource type="Shader" id="Shader_yeodp"]
@@ -436,55 +435,10 @@ texture = ExtResource("3_5oydq")
 16:12/0 = 0
 17:12/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ylvmc"]
-texture = ExtResource("4_pt2rm")
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-
 [sub_resource type="TileSet" id="TileSet_o7xb6"]
 sources/0 = SubResource("TileSetAtlasSource_gcxg4")
 sources/1 = SubResource("TileSetAtlasSource_g0lst")
 sources/2 = SubResource("TileSetAtlasSource_v0dui")
-sources/3 = SubResource("TileSetAtlasSource_ylvmc")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7jfvy"]
 shader = SubResource("Shader_yeodp")
@@ -503,7 +457,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("fox:frame")
+tracks/0/path = NodePath("tree:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -521,14 +475,14 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("fox:frame")
+tracks/0/path = NodePath("tree:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [9, 10]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kysvl"]
@@ -546,7 +500,7 @@ texture = ExtResource("2_d2k41")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_af5l7")
-position = Vector2(43, -84)
+position = Vector2(48, -73)
 texture = ExtResource("2_d2k41")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -571,10 +525,12 @@ position = Vector2(-71, -94)
 tile_map_data = PackedByteArray("AAAAAAUAAgABAAcAAAABAAUAAgACAAcAAAAGAAUAAgAGAAcAAAA=")
 tile_set = SubResource("TileSet_o7xb6")
 
-[node name="fox" type="Sprite2D" parent="."]
-position = Vector2(-25, -13)
-texture = ExtResource("6_k2dwn")
-hframes = 19
+[node name="tree" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_0x1ex")
+hframes = 5
+vframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cnkt2gcxqrnef"]
 
 [ext_resource type="Script" path="res://scenes/rocket.gd" id="1_m2r5t"]
-[ext_resource type="PackedScene" uid="uid://dbq5g2ek0c035" path="res://scenes/fire_work.tscn" id="2_1vh1x"]
+[ext_resource type="PackedScene" uid="uid://dbq5g2ek0c035" path="res://scenes/money.tscn" id="2_1vh1x"]
 [ext_resource type="Gradient" uid="uid://bj0kij4yjmd5k" path="res://colors/color01.tres" id="2_6nw4y"]
 [ext_resource type="AudioStream" uid="uid://bk4n7glxiwyiq" path="res://assets/firework_rocket_launch.wav" id="3_o3rf5"]
 

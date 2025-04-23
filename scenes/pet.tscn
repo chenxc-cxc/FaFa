@@ -1,16 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://bwxttvui2774s"]
+[gd_scene load_steps=29 format=3 uid="uid://bwxttvui2774s"]
 
 [ext_resource type="Script" path="res://scenes/pet.gd" id="1_pjd2a"]
-[ext_resource type="Texture2D" uid="uid://d0qf8cklsv0e7" path="res://assets/player.png" id="2_pgadw"]
+[ext_resource type="Texture2D" uid="uid://cck3qirglq8j1" path="res://assets/shining_tree_idle_walk.png" id="2_hl040"]
 [ext_resource type="Texture2D" uid="uid://cb4dxiw04bwho" path="res://assets/tile05.png" id="3_2rs2u"]
 [ext_resource type="PackedScene" uid="uid://mixw5jsqxovi" path="res://scenes/llmapi.tscn" id="4_300yy"]
+[ext_resource type="Texture2D" uid="uid://delqjg0xres7a" path="res://assets/player-single.png" id="4_g6itk"]
+[ext_resource type="Texture2D" uid="uid://cqrechwgre2q5" path="res://assets/coat.png" id="4_roh1x"]
 [ext_resource type="PackedScene" uid="uid://cnkt2gcxqrnef" path="res://scenes/rocket.tscn" id="5_3hnuv"]
+[ext_resource type="Texture2D" uid="uid://cidrxn32uas4" path="res://assets/tea.png" id="5_n0bnb"]
 [ext_resource type="Script" path="res://scenes/fire_window.gd" id="5_yfg1v"]
+[ext_resource type="Texture2D" uid="uid://oq4y8j8g6k6x" path="res://assets/good.png" id="6_giu7v"]
 [ext_resource type="Gradient" uid="uid://bj0kij4yjmd5k" path="res://colors/color01.tres" id="7_0vq3q"]
 [ext_resource type="Script" path="res://scenes/home_window.gd" id="7_7g47i"]
 [ext_resource type="PackedScene" uid="uid://c8f6xxb2xjlwh" path="res://scenes/home.tscn" id="7_po47n"]
-[ext_resource type="Gradient" uid="uid://j5xyg0gfol2m" path="res://colors/color02.tres" id="8_0txoc"]
-[ext_resource type="Gradient" uid="uid://d2wtk86o4ixcj" path="res://colors/color03.tres" id="9_f7lel"]
+[ext_resource type="PackedScene" uid="uid://dhxff2lguocol" path="res://scenes/settings_windows.tscn" id="10_wxyz"]
+[ext_resource type="Script" path="res://scenes/ttsapi.gd" id="13_pppp1"]
+[ext_resource type="Script" path="res://scenes/sttapi.gd" id="14_io6el"]
 
 [sub_resource type="Animation" id="Animation_okytx"]
 length = 0.001
@@ -29,7 +34,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hhly5"]
 resource_name = "idle"
-length = 0.4
+length = 0.5
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -38,15 +43,15 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [13, 14, 15, 16]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_5564x"]
 resource_name = "walk"
-length = 0.4
+length = 0.5
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -56,10 +61,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [5, 6, 7, 8, 9]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nslo7"]
@@ -70,6 +75,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lf4sb"]
+radius = 133.708
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2k3wu"]
 texture = ExtResource("3_2rs2u")
@@ -79,13 +85,60 @@ texture_margin_right = 10.0
 texture_margin_bottom = 10.0
 region_rect = Rect2(0, 0, 31, 32)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_chat"]
+bg_color = Color(1, 1, 1, 0)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.388235, 0.505882, 0.533333, 0.701961)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0, 0, 0, 0)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
+bg_color = Color(0.491415, 0.617019, 0.647676, 0.627451)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input_focus"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0.2, 0.6, 1, 0.2)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_input"]
+bg_color = Color(0.95, 0.95, 0.95, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 2
+
 [node name="Pet" type="Node2D"]
+position = Vector2(0, 122)
 script = ExtResource("1_pjd2a")
 metadata/_edit_vertical_guides_ = [-263.0, 579.0, 1992.0, -1554.0]
 metadata/_edit_horizontal_guides_ = [11.0, -76.0, 1239.0]
 
 [node name="Player" type="Node2D" parent="."]
-position = Vector2(310, 382)
+position = Vector2(310, 375)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
 libraries = {
@@ -93,21 +146,26 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(4, 4)
-texture = ExtResource("2_pgadw")
-hframes = 19
+position = Vector2(0, 20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_hl040")
+hframes = 5
+vframes = 2
 
 [node name="Area2D" type="Area2D" parent="Player/Sprite2D"]
+position = Vector2(23.3333, 13.3333)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Sprite2D/Area2D"]
-position = Vector2(0, 4.25)
+position = Vector2(-26.6665, 9.99994)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_lf4sb")
 
 [node name="Polygon2DPlayer" type="Polygon2D" parent="Player"]
 visible = false
-position = Vector2(-2, 4)
+position = Vector2(3, 30)
+scale = Vector2(1, 0.956522)
 color = Color(1, 1, 1, 0)
-polygon = PackedVector2Array(-53, -44, 59, -45, 59, 66, -53, 66)
+polygon = PackedVector2Array(-63, -51.2273, 52, -46, 50, 63.7727, -63, 63.7727)
 
 [node name="Polygon2DMenu" type="Polygon2D" parent="Player"]
 visible = false
@@ -125,36 +183,112 @@ pivot_offset = Vector2(250, 300)
 
 [node name="PanelContainer" type="PanelContainer" parent="Player/Control"]
 custom_minimum_size = Vector2(500, 300)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 520.0
-offset_bottom = 300.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_top = -89.0
+offset_right = 559.0
+offset_bottom = 276.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_2k3wu")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Player/Control/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="Player/Control/PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Player/Control/PanelContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Player/Control/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(470, 170)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_colors/default_color = Color(0.49, 0.49, 0.49, 1)
+focus_mode = 2
+theme_override_colors/default_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_colors/selection_color = Color(0.820295, 0.707815, 0.55597, 1)
 theme_override_font_sizes/normal_font_size = 24
-visible_characters = 0
-visible_ratio = 0.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_chat")
+scroll_following = true
+selection_enabled = true
+text_direction = 1
 
-[node name="LineEdit" type="LineEdit" parent="Player/Control/PanelContainer/VBoxContainer"]
-custom_minimum_size = Vector2(500, 50)
+[node name="TTSErrorLabel" type="Label" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(310, 40)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.85, 0.2, 0.2, 0.8)
+theme_override_font_sizes/font_size = 16
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="TTSGridContainer" type="GridContainer" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
+columns = 4
+
+[node name="TTSButton" type="Button" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer/TTSGridContainer"]
+custom_minimum_size = Vector2(150, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "语音播放"
+
+[node name="QuickChat1" type="Button" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer/TTSGridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "穿衣建议"
+icon = ExtResource("4_roh1x")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
+[node name="QuickChat2" type="Button" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer/TTSGridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "养生建议"
+icon = ExtResource("5_n0bnb")
+flat = true
+expand_icon = true
+
+[node name="QuickChat3" type="Button" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer/TTSGridContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+tooltip_text = "正能量夸夸"
+icon = ExtResource("6_giu7v")
+flat = true
+expand_icon = true
+
+[node name="InputContainer" type="HBoxContainer" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer/InputContainer"]
+custom_minimum_size = Vector2(470, 45)
+layout_mode = 2
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 1)
+theme_override_colors/clear_button_color = Color(0.321728, 0.321728, 0.321728, 1)
+theme_override_colors/caret_color = Color(0, 0, 0, 1)
+theme_override_colors/font_placeholder_color = Color(0.5, 0.5, 0.5, 0.7)
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
 theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxFlat_input_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 placeholder_text = "你想聊些啥"
-max_length = 40
-context_menu_enabled = false
-virtual_keyboard_enabled = false
+max_length = 100
+clear_button_enabled = true
+caret_blink = true
+
+[node name="VoiceInputButton" type="Button" parent="Player/Control/PanelContainer/MarginContainer/VBoxContainer/InputContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+disabled = true
+icon = ExtResource("4_g6itk")
+icon_alignment = 1
+expand_icon = true
 
 [node name="LLMAPI" parent="." instance=ExtResource("4_300yy")]
 
@@ -168,7 +302,7 @@ transparent = true
 mouse_passthrough = true
 script = ExtResource("5_yfg1v")
 rocket_scene = ExtResource("5_3hnuv")
-colors = Array[Gradient]([ExtResource("7_0vq3q"), ExtResource("8_0txoc"), ExtResource("9_f7lel")])
+colors = Array[Gradient]([ExtResource("7_0vq3q"), ExtResource("7_0vq3q"), ExtResource("7_0vq3q")])
 
 [node name="HomeWindow" type="Window" parent="."]
 transparent_bg = true
@@ -186,5 +320,22 @@ scale = Vector2(3, 3)
 
 [node name="AudioStreamPlayer" parent="HomeWindow/Home" index="8"]
 volume_db = -20.0
+
+[node name="SettingsWindow" parent="." instance=ExtResource("10_wxyz")]
+
+[node name="TTSAPI" type="Node" parent="."]
+script = ExtResource("13_pppp1")
+
+[node name="TTSHTTPRequest" type="HTTPRequest" parent="TTSAPI"]
+
+[node name="TTSAudioStreamPlayer" type="AudioStreamPlayer" parent="TTSAPI"]
+
+[node name="STTAPI" type="Node" parent="."]
+script = ExtResource("14_io6el")
+
+[node name="STTHTTPRequest" type="HTTPRequest" parent="STTAPI"]
+
+[connection signal="request_completed" from="TTSAPI/TTSHTTPRequest" to="TTSAPI" method="_on_http_request_request_completed"]
+[connection signal="finished" from="TTSAPI/TTSAudioStreamPlayer" to="TTSAPI" method="_on_audio_stream_player_finished"]
 
 [editable path="HomeWindow/Home"]

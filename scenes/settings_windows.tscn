@@ -1,0 +1,680 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhxff2lguocol"]
+
+[ext_resource type="Script" path="res://scenes/settings_windows.gd" id="1_tptg8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_window"]
+bg_color = Color(0.95, 0.95, 0.95, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.1)
+shadow_size = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color(0, 0, 0, 0.05)
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_separator"]
+bg_color = Color(0.85, 0.85, 0.85, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lineedit_focus"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.6, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lineedit_normal"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_textedit_normal"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_textedit_focus"]
+content_margin_left = 10.0
+content_margin_right = 10.0
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.2, 0.6, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_hover"]
+bg_color = Color(0.25, 0.65, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_pressed"]
+bg_color = Color(0.15, 0.55, 0.95, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_button_normal"]
+bg_color = Color(0.2, 0.6, 1, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[node name="SettingsWindowControl" type="Window"]
+title = "Setting"
+position = Vector2i(800, 400)
+size = Vector2i(1100, 1000)
+visible = false
+min_size = Vector2i(800, 600)
+theme_override_styles/embedded_border = SubResource("StyleBoxFlat_window")
+script = ExtResource("1_tptg8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 15
+
+[node name="Others" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Others"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SectionLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "基本设置"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxFlat_separator")
+
+[node name="ParamGrid" type="GridContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="FollowMouseCheck" type="CheckBox" parent="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer/VBoxContainer/ParamGrid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+
+[node name="FollowMouseLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer/VBoxContainer/ParamGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "跟随鼠标"
+vertical_alignment = 1
+
+[node name="Model" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Model"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SectionLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "模型参数"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxFlat_separator")
+
+[node name="ModelGrid" type="GridContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="NameLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Name"
+vertical_alignment = 1
+
+[node name="Name" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+
+[node name="NameErrorPlaceholder" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NameNullLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0, 0.202, 0.763)
+text = "Error : Please enter setting name"
+vertical_alignment = 1
+
+[node name="LLMFamilyLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "LLM"
+vertical_alignment = 1
+
+[node name="LLMFamilyChoose" type="OptionButton" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_lineedit_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+selected = 0
+item_count = 2
+popup/item_0/text = "Deepseek"
+popup/item_1/text = "Qwen"
+popup/item_1/id = 1
+
+[node name="LLMFamilyErrorPlaceholder" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LLMFamilyNullLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0, 0.202, 0.763)
+text = "Error : Please enter the chosen Presetting"
+vertical_alignment = 1
+
+[node name="URLLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "URL"
+vertical_alignment = 1
+
+[node name="URL" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+
+[node name="URLErrorPlaceholder" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="URLNullLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0, 0.202, 0.763)
+text = "Error : Please enter Model URL"
+vertical_alignment = 1
+
+[node name="KeyLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "API Key"
+vertical_alignment = 1
+
+[node name="Key" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+secret = true
+
+[node name="KeyErrorPlaceholder" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+visible = false
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="KeyNullLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0, 0.202, 0.763)
+text = "Error : Please enter your API key"
+vertical_alignment = 1
+
+[node name="ModelLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Model"
+vertical_alignment = 1
+
+[node name="Model" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+
+[node name="ModelErrorPlaceholder" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ModelNullLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.96, 0, 0.202, 0.763)
+text = "Error : Please enter your API key"
+vertical_alignment = 1
+
+[node name="TemperatureLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Temperature"
+vertical_alignment = 1
+
+[node name="Temperature" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer Temperature, eg.(default) 1.0"
+
+[node name="TopPLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Top P"
+vertical_alignment = 1
+
+[node name="TopP" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer Top P, eg.(default) 0.8"
+
+[node name="HistoryCountLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "History Count"
+vertical_alignment = 1
+
+[node name="HistoryCount" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer History Count, eg.(default) 5"
+
+[node name="MaxTokensLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Max Tokens"
+vertical_alignment = 1
+
+[node name="MaxTokens" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer Max Tokens, eg.(default) 100"
+
+[node name="SystemPromptLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "System Prompt"
+vertical_alignment = 1
+
+[node name="SystemPrompt" type="TextEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_textedit_normal")
+theme_override_styles/focus = SubResource("StyleBoxFlat_textedit_focus")
+text = "你是深度求索"
+placeholder_text = "eg: you are a helpful helper."
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="UserPersonaLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Your Persona"
+vertical_alignment = 1
+
+[node name="UserPersona" type="TextEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_textedit_normal")
+theme_override_styles/focus = SubResource("StyleBoxFlat_textedit_focus")
+placeholder_text = "请输入您的个人信息，如：出生年月日、生肖、星座等"
+wrap_mode = 1
+scroll_fit_content_height = true
+
+[node name="SaveLLMSettingButton" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "Save Chat Configuration"
+
+[node name="TTS" type="PanelContainer" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="SectionLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/font_size = 18
+text = "TTS Settings"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxFlat_separator")
+
+[node name="TTSGrid" type="GridContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 15
+columns = 2
+
+[node name="TypeLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Type"
+vertical_alignment = 1
+
+[node name="Type" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "eg: AllVoiceLab"
+
+[node name="TTSURLLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "URL"
+vertical_alignment = 1
+
+[node name="TTSURL" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "eg: https://api.allvoicelab.cn/v1/text-to-speech/create"
+
+[node name="KeyLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "API Key"
+vertical_alignment = 1
+
+[node name="Key" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your API key"
+secret = true
+
+[node name="VoiceIDLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Voice ID"
+vertical_alignment = 1
+
+[node name="VoiceID" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "eg: 272878038100738056"
+
+[node name="ModelIDLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Model ID"
+vertical_alignment = 1
+
+[node name="ModelID" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer Model ID, eg.(default) tts-multilingual"
+
+[node name="LanguageCodeLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Language Code"
+vertical_alignment = 1
+
+[node name="LanguageCode" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer Language Code, eg.(default) zh"
+
+[node name="SpeedLabel" type="Label" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+theme_override_colors/font_color = Color(0.3, 0.3, 0.3, 1)
+theme_override_font_sizes/font_size = 18
+text = "Speed"
+vertical_alignment = 1
+
+[node name="Speed" type="LineEdit" parent="MarginContainer/ScrollContainer/VBoxContainer/TTS/MarginContainer/VBoxContainer/TTSGrid"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/focus = SubResource("StyleBoxFlat_lineedit_focus")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lineedit_normal")
+placeholder_text = "Enter your prefer Speed, eg.(default) 1.0"
+
+[node name="SaveTTSSetintButton" type="Button" parent="MarginContainer/ScrollContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/hover = SubResource("StyleBoxFlat_button_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_button_pressed")
+theme_override_styles/normal = SubResource("StyleBoxFlat_button_normal")
+text = "Save TTS Configuration"
+
+[connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="toggled" from="MarginContainer/ScrollContainer/VBoxContainer/Others/MarginContainer/VBoxContainer/ParamGrid/FollowMouseCheck" to="." method="_on_follow_mouse_check_toggled"]
+[connection signal="item_selected" from="MarginContainer/ScrollContainer/VBoxContainer/Model/MarginContainer/VBoxContainer/ModelGrid/LLMFamilyChoose" to="." method="_on_llm_family_choose_item_selected"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/SaveLLMSettingButton" to="." method="_on_save_llm_setting_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/SaveTTSSetintButton" to="." method="_on_save_tts_setting_button_pressed"]
