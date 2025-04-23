@@ -297,7 +297,7 @@ func on_submitted(new_text:String):
 	
 func on_chat_request_started() -> void:
 	rich_text_label.modulate = Color(0.2, 0.2, 0.2, 1)  # 设置浅灰色
-	show_text("Requesting...", 1)
+	show_text("让发发想想...", 1)
 
 func on_chat_request_finished(output: String) -> void:
 	rich_text_label.modulate = Color.WHITE  # 恢复正常颜色
