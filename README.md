@@ -373,6 +373,15 @@ Signals:
 
 
 
-## 项目二维码
+## 十、项目二维码
 
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/chenxc-cxc/FaFa" alt="Project QR Code" width="150"/>
+
+## 十一、版权声明
+
+本项目基于 MIT 许可证开源：
+
+- 原始版权所有 © 2024 xccds
+- 修改版权所有 © 2025 chenxc-cxc & nia717
+
+详细许可证条款请参见 [LICENSE](LICENSE) 文件。
