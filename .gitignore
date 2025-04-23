@@ -1,9 +1,9 @@
 # Godot 4+ specific ignores
-.godot/
-.import/
-export.cfg
-export_presets.cfg
-*.translation
+# .godot/
+# .import/
+# export.cfg
+# export_presets.cfg
+# *.translation
 
 # # Godot-specific ignores
 # *.import
@@ -16,6 +16,6 @@ export_presets.cfg
 .DS_Store
 Thumbs.db
 
-# Build and export ignores
-builds/
-exports/
+# # Build and export ignores
+# builds/
+# exports/
