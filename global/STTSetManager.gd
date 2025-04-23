@@ -8,7 +8,7 @@ var current_stt_set: Dictionary = {
 		"type": "Coze-STT",
 		"host": "https://api.coze.cn",
 		"path": "/v1/audio/transcriptions",
-		"key": "pat_fsXp9FjqbqxHvNY9mPO6E6wilZT93foIPJLwZ5Dt0yhy6uj9ElMf1NAArMDnQe3V",
+		"key": "",
 		"model": "whisper-1",
 		"language": "zh"
 	}, 

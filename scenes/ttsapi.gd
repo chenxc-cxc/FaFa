@@ -38,7 +38,7 @@ func play_tts(text: String) -> void:
 		"ai-api-key: " + tts_settings.api.key,
 		"Content-Type: application/json"
 	]
-	print(tts_settings.api.voiceid)
+	# print(tts_settings.api.voiceid)
 	
 	var body = JSON.stringify({
 		"text": current_text,

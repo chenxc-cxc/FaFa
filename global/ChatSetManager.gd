@@ -19,7 +19,7 @@ var current_chat_set : Dictionary = {
 	"api": {
 		"type": "DeepSeek-Chat",
 		"url": "https://api.deepseek.com/v1/chat/completions",
-		"key": "sk-5ebebc37284e445598ae9c3080afd3ff",
+		"key": "",
 		"model": "deepseek-chat"
 	},
 	"parameters": {
