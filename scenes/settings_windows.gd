@@ -76,7 +76,7 @@ func _ready():
 					"url":
 						child.text = chat_config["api"].get("url", "https://api.deepseek.com/v1/chat/completions")
 					"key":
-						child.text = chat_config["api"].get("key", "sk-5ebebc37284e445598ae9c3080afd3ff")
+						child.text = chat_config["api"].get("key", "")
 					"model":
 						child.text = chat_config["api"].get("model", "deepseek-chat")
 					"historycount":
@@ -104,7 +104,7 @@ func _ready():
 					"ttsurl":
 						child.text = tts_config["api"].get("url", "https://api.allvoicelab.cn/v1/text-to-speech/create")
 					"key":
-						child.text = tts_config["api"].get("key", "ak_d2dd32f22f82d843170b2a5204c1d862dda2")
+						child.text = tts_config["api"].get("key", "")
 					"voiceid":
 						child.text = tts_config["api"].get("voiceid", "272878038100738056")
 					"modelid":
