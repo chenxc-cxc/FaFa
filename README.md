@@ -363,4 +363,8 @@ Signals:
 
 - chenxc-cxc（1341837103@qq.com）& nia717（1404199069@qq.com）
 
-  
+
+
+## 项目二维码
+
+<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/chenxc-cxc/FaFa" alt="Project QR Code" width="150"/>
