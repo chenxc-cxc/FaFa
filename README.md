@@ -1,4 +1,6 @@
-# Desktop Pet 项目架构文档
+# Desktop Pet
+
+
 
 ## 一、项目概述
 
@@ -20,350 +22,71 @@ Desktop Pet 是一个基于 Godot 4.3 开发的 AI 桌面宠物应用。项目�
 4. 开始对话
 5. 输入`# help`可获取指令帮助
 
-## 二、系统架构
-
-### 1. 核心组件
-
-```
-Core System:
-├── 主场景系统
-├── AI 服务系统
-└── 全局管理系统
-```
-
-#### 1.1 主场景系统
-
-- Player 节点：角色渲染与动画控制
-- Control 节点：用户界面管理
-- AI 系统节点：AI 服务集成
-- 窗口管理节点：功能窗口控制
-
-#### 1.2 AI 服务系统
-
-- LLMAPI (scenes/llmapi.gd)：大语言模型服务
-- TTSAPI (scenes/ttsapi.gd)：语音合成服务
-- STTAPI (scenes/sttapi.gd)：语音识别服务 (暂未开通使用)
-
-#### 1.3 全局管理系统 (global/)
-
-- ChatSetManager：对话配置管理
-- TTSSetManager：语音合成配置管理
-- STTSetManager：语音识别配置管理
-
-### 2. 场景结构
-
-#### 2.1 主场景层级
-
-```
-Pet (Node2D)
-├── Player (Node2D)
-│   ├── AnimationPlayer
-│   ├── Sprite2D
-│   ├── Area2D
-│   └── Control
-├── AI Services
-│   ├── LLMAPI
-│   ├── TTSAPI
-│   └── STTAPI
-└── Windows
-    ├── HomeWindow
-    ├── FireWindow
-    └── SettingsWindow
-```
-
-#### 2.2 UI 系统结构
-
-```
-Control
-├── PanelContainer
-│   └── MarginContainer
-│       └── VBoxContainer
-│           ├── RichTextLabel
-│           ├── InputContainer
-│           │   ├── LineEdit
-│           │   └── VoiceInputButton
-│           └── TTSGridContainer
-```
-
-## 三、状态系统
-
-### 1. 角色状态管理
-
-```
-States:
-├── idle：待机状态
-├── walk：行走状态
-└── chat：对话状态
-```
-
-状态转换规则：
-
-1. idle -> walk
-   - 触发条件：鼠标距离阈值、跟随模式、非对话状态
-2. walk -> idle
-   - 触发条件：鼠标接近、跟随关闭、对话开始
-3. -> chat
-   - 触发条件：用户交互、AI 响应
-
-### 2. 系统状态变量
-
-- show_menu：菜单显示状态
-- dragging：拖拽状态
-- if_chat_end：对话完成状态
-- latest_follow_mouse_state：跟随状态
-
-### 3. AI 服务状态
-
-```gdscript
-enum TTSState {
-    READY,      // 就绪状态
-    CONVERTING, // 转换中
-    PLAYING     // 播放中
-}
-```
 
-## 四、交互系统
 
-### 1. 用户输入处理
+项目开发文档可见 [System Architecture](SystemArchitecture.md) 文档。
 
-```gdscript
-Signals:
-├── line_edit.text_submitted -> on_submitted
-├── area_2d.input_event -> on_input_event
-└── voice_input_button.pressed -> _on_voice_input_button_pressed
-```
 
-### 2. AI 响应处理
 
-```gdscript
-Signals:
-├── llmapi.chat_request_finished -> on_chat_request_finished
-├── ttsapi.tts_completed -> on_tts_completed
-└── sttapi.stt_completed -> _on_stt_completed
-```
+## 二、运行展示
 
-### 3. 配置信号
+你可以扫描下面的二维码，观看视频展示。
 
-```gdscript
-Signals:
-└── settings_window.follow_mouse_changed -> _on_follow_mouse_changed
-```
+<img src="./picture/demo_play.png" alt="Video Demo" />
 
-## 五、功能模块
+如下图所示，在启动程序后，迎接用户的是**FaFa**——一个活泼互动的“幸运树”桌面伴侣。FaFa可以跟随鼠标指针的移动，并支持窗口透明，确保它不会干扰用户的工作流程。
 
-### 1. 对话系统
+<img src="./picture/demo_launch.jpg" alt="Launch" />
 
-#### 1.1 基础对话
+点击 FaFa 会弹出一个聊天窗口，用户可输入请求进行聊天交互。
 
-- 支持文本输入对话
-- 集成 LLM API 服务
-- 上下文管理
-- 特殊指令处理
-
-#### 1.2 快速对话系统
-
-```
-QuickChat System:
-├── 类型定义
-│   └── enum QuickChatType {QUICKCHAT1, QUICKCHAT2, QUICKCHAT3}
-├── UI组件
-│   └── TTSGridContainer
-│       ├── QuickChat1 Button
-│       ├── QuickChat2 Button
-│       └── QuickChat3 Button
-└── 预设消息
-    ├── QUICKCHAT1: 每日穿搭建议
-    ├── QUICKCHAT2: 养生建议
-    └── QUICKCHAT3: 正能量夸夸
-```
-
-快速对话特性：
-
-- 动态时间格式化：支持实时日期插值
-- 即时响应：一键触发内置对话
-
-信号流程：
-
-```gdscript
-QuickChat Flow:
-├── Button.pressed
-├── _on_quick_chat_button_pressed(type: QuickChatType)
-├── on_submitted(message)
-└── llmapi.call_ai_chat(message)
-```
-
-### 2. 语音系统
-
-- TTS 语音合成
-- 语音播放控制
-- 音频资源管理
-- STT 语音识别（暂未开通使用）
-
-### 3. 动画系统
-
-#### 3.1 角色动画状态
-
-```
-Animation States:
-├── idle (待机)
-├── walk (行走)
-└── RESET
-```
-
-#### 3.2 场景特效动画
-
-##### 3.2.1 主场景 (scenes/pet.tscn)
-
-- 角色动画
-- UI过渡动画
-- 对话框缓动效果
-
-##### 3.2.2 休息场景 (scenes/home.tscn)
-
-```
-Home Animations:
-├── idle
-│   ├── 帧序列: [9, 10]
-│   ├── 循环模式: loop_mode = 1
-│   └── 持续时间: 0.4s
-└── RESET
-    └── 场景初始化
-```
-
-特效元素：
-
-- 背景粒子
-- 星星闪烁
-- 角色呼吸效果
-
-##### 3.2.3 撒金币场景
-
-- 粒子系统
-- 爆炸效果
-- 颜色渐变
-
-#### 3.3 动画状态转换
-
-##### 3.3.1 主要状态转换
-
-```
-State Transitions:
-├── idle -> walk
-│   ├── 触发条件
-│   │   ├── 鼠标距离超过阈值
-│   │   ├── 跟随模式开启
-│   │   └── 非对话状态
-│   └── 转换效果: 即时切换
-├── walk -> idle
-│   ├── 触发条件
-│   │   ├── 鼠标接近
-│   │   ├── 跟随关闭
-│   │   └── 对话开始
-│   └── 转换效果: 即时切换
-└── 场景切换
-    ├── 主场景 -> 休息场景
-    └── 主场景 -> 撒金币场景
-```
-
-##### 3.3.2 UI动画
-
-```
-UI Animations:
-├── 对话框显示
-│   ├── 缓动函数: Tween.TRANS_BACK
-│   ├── 缓动类型: Tween.EASE_IN_OUT
-│   └── 持续时间: 0.5s
-├── 文本显示
-│   ├── 类型: visible_ratio tween
-│   └── 持续时间: 根据文本长度动态调整
-└── 按钮状态
-    ├── 普通状态
-    ├── 悬停状态
-    └── 禁用状态
-```
-
-#### 3.4 动画控制器
-
-```
-Controllers:
-├── AnimationPlayer
-│   ├── 角色状态动画
-│   └── 场景转换动画
-└── Tween
-    ├── UI元素动画
-    └── 特效动画
-```
-
-信号连接：
-
-```gdscript
-Signals:
-├── animation_finished -> _on_animation_finished
-├── tween_completed -> _on_tween_completed
-└── state_changed -> _update_animation_state
-```
-
-### 4. 窗口系统
-
-- 主窗口管理
-- 功能窗口控制
-- 窗口状态同步
-
-## 六、配置系统
-
-### 1. 配置项
-
-- AI 服务配置
-
-### 2. 存储位置
-
-- 配置文件：
-  - user://chat_settings.json
-  - user://tts_settings.json
-  - user://stt_settings.json
-- 资源文件：res://assets/
-- 场景文件：res://scenes/
-
-## 七、扩展开发
-
-### 1. 新功能添加流程
-
-1. 创建场景文件 (.tscn)
-2. 实现控制脚本 (.gd)
-3. 注册到主场景
-4. 添加状态和信号处理
-5. 更新配置系统
-
-### 2. 开发规范
-
-- 模块化设计
-- 信号通信
-- 配置驱动
-- 错误处理
-- 代码注释
-
-## 八、未来规划
-
-### 1. 功能扩展
-
-- 更多特效支持
-- 多角色支持
-- 快速对话增强
-  - 支持自定义快捷短语
-  - 动态调整对话模板
-  - 用户偏好学习
-
-### 2. 技术优化
-
-- 性能优化
-- 内存管理
-- 用户自定义配置管理
-- 插件系统
-- Agent设计
-
-
-
-## 九、致谢
+<img src="./picture/demo_chat.jpg" alt="Chat Window" />
+
+Option+Control 会弹出一个设置窗口。在设置面板中，用户可以配置API，选择语音样式，并输入个人信息以接收个性化响应。
+
+<img src="./picture/demo_setting.jpg" alt="Setting Window" />
+
+
+
+FaFa的快速聊天功能提供个性化的日常着装建议、健康提示和激励信息。用户只需点击相应的图标就可以收到量身定制的建议。例如，如果用户将他们的个人信息设置为“我是双鱼座”，FaFa将为每个快速聊天选项生成定制的响应。
+
+<img src="./picture/demo_quickchat_fit.jpg" alt="Daily Outfit Tips" />
+
+<img src="./picture/demo_quickchat_wellness.jpg" alt="Wellness Suggestions" />
+
+<img src="./picture/demo_quickchat_encourage.jpg" alt="Encouraging Message" />
+
+
+
+FaFa在聊天窗口配置了“语音播放”按键，用户可点击该按键，进行语音合成播放。
+
+此外，用户还可输入特殊指令：
+
+- `# help` 获取指令帮助
+- `# money` 触发撒金币特效与音频
+- `# rest` 触发休息模式，播放雨声白噪声
+
+<img src="./picture/demo_help.jpg" alt="# help" />
+
+<img src="./picture/demo_money.png" alt="# money" /> 
+
+
+
+
+
+<img src="./picture/demo_rest.jpg" alt="# rest" />
+
+
+
+
+
+## 三、未来开发计划
+
+- 接入文件管理MCP
+
+
+
+## 四、致谢
 
 本项目基于 [xccds](https://github.com/xccds) 的开源项目 [DesktopPet:](https://github.com/xccds/DesktopPet) 进行开发。感谢原作者的无私分享和杰出贡献。
 
@@ -373,11 +96,11 @@ Signals:
 
 
 
-## 十、项目二维码
+## 五、项目二维码
 
 <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://github.com/chenxc-cxc/FaFa" alt="Project QR Code" width="150"/>
 
-## 十一、版权声明
+## 六、版权声明
 
 本项目基于 MIT 许可证开源：
 
